@@ -27,5 +27,17 @@ router.post('/', (req,res)=>{
     })
 });
 
+router.post('/crear-usuario',(req,res)=>{
+    const sql = 'INSERT INTO login SET ?'
+    const solicitudObj ={
+        user: req.body.user,
+        password: req.body.password
+    }
+    conectBD.query(sql,solicitudObj,(err,result)=>{
+        if(err) throw err
+        res.send(" Agregado con exito!")
+    })
+ });
+
 
 module.exports = router;
