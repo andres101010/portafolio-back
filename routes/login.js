@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
+const BD = require('../DB/db.js');
 express().use(express.json());
 
 const conectBD = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'root',
-    database:'portafolio'
+    host: BD.BD_HOST || 'localhost',
+    user: BD.BD_USER || 'root',
+    password: BD.BD_PASSWORD || 'root',
+    database: BD.BD_NAME || 'portafolio'
 });
 
 router.post('/', (req,res)=>{
