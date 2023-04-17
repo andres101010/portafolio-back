@@ -30,20 +30,21 @@ router.get('/', (req,res)=>{
     }) 
 });
 
-// router.post('/crear-solicitud',(req,res)=>{
-//     const sql = 'INSERT INTO solicitudes SET ?'
-//     const solicitudObj ={
-//         nombre: req.body.nombre,
-//         correo: req.body.correo,
-//         telefono: req.body.telefono,
-//         solicitud: req.body.solicitud,
-//         comentario: req.body.comentario
-//     }
-//     conectBD.query(sql,solicitudObj,(err,result)=>{
-//         if(err) throw err
-//         res.send("Solicitud agregada con exito!")
-//     })
-//  });
+ router.get('/:userId',(req,res)=>{
+    const userId = req.params.userId
+    const sql = `SELECT * FROM solicitudes WHERE idsolicitudes = ${userId}`
+
+    conectBD.query(sql, (err, result)=>{
+        if(err){
+            res.status(500).send(err)
+        }else if(result.length > 0){
+            res.status(200).send(result)
+        }else{
+            res.status(400).send("Informacion no encontrada")
+        }
+        
+    }) 
+ })
 
  router.put('/editar-solicitud/:idsolicitudes',(req,res)=>{
        const id = req.params.idsolicitudes

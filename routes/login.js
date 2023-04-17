@@ -12,6 +12,7 @@ const conectBD = mysql.createConnection({
     database: BD.BD_NAME
 });
 
+
 router.post('/', (req,res)=>{
     const {user,password} = req.body
     const values = [user,password]
