@@ -14,8 +14,8 @@ const conectBD = mysql.createConnection({
 
 
 router.post('/', (req,res)=>{
-    const {User,Password} = req.body
-    const values = [User,Password]
+    const {user,password} = req.body
+    const values = [user,password]
 
     const sql = 'SELECT * FROM login WHERE user = ? and password = ?'
 
